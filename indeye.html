@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>indeye — indisches Auge mitten im Stirn — drittes Auge — Ajna</title>
+<style>body{margin:0;background:#020205;color:#ddd;font:11px monospace;overflow:hidden}
+canvas{width:100vw;height:100vh;display:block}</style></head><body>
+<canvas id="c"></canvas>
+<script>
+let C=document.getElementById('c'),X=C.getContext('2d'),W,H;
+function resize(){C.width=W=C.offsetWidth*2;C.height=H=C.offsetHeight*2;}resize();
+function draw(){
+ X.clearRect(0,0,W,H);
+ let cx=W/2,cy=H/2;
+ // Stirn
+ X.fillStyle='#111';X.beginPath();X.ellipse(cx,cy-H*0.1,W*0.35,H*0.4,0,0,7);X.fill();
+ // Normale Augen leye reye als Punkte
+ X.fillStyle='#333';X.beginPath();X.arc(cx-W*0.12,cy,W*0.04,0,7);X.fill();
+ X.beginPath();X.arc(cx+W*0.12,cy,W*0.04,0,7);X.fill();
+ // Indisches Auge mitten im Stirn — drittes Auge — vertikal — Ajna
+ X.save();X.translate(cx,cy-H*0.18);X.rotate(Math.PI/2);
+ X.fillStyle='#000';X.beginPath();X.ellipse(0,0,W*0.08,W*0.03,0,0,7);X.fill();
+ X.strokeStyle='#a855f7';X.lineWidth=3;X.stroke();
+ // Iris vertikal
+ let grad=X.createRadialGradient(0,0,W*0.02,0,0,W*0.01);
+ grad.addColorStop(0,'#000');grad.addColorStop(0.5,'#ef4444');grad.addColorStop(1,'#22d3ee');
+ X.fillStyle=grad;X.beginPath();X.ellipse(0,0,W*0.03,W*0.015,0,0,7);X.fill();
+ // Pupille vertikal — sieht anders
+ X.fillStyle='#fff';X.beginPath();X.ellipse(0,0,W*0.008,W*0.003,0,0,7);X.fill();
+ X.restore();
+ // Lichtstrahl aus drittem Auge
+ X.strokeStyle='rgba(168,85,247,0.6)';X.lineWidth=2;X.beginPath();X.moveTo(cx,cy-H*0.18);X.lineTo(cx,H*0.9);X.stroke();
+ X.fillStyle='#a855f7';X.font='9px monospace';X.fillText('Ajna — drittes Auge — sieht Zukunft — co2 o2 h2o — Vulkan-Drache',cx+20,cy-H*0.18);
+ X.fillStyle='#666';X.fillText('eye / auge dann indisches auge mitten im stirn — ewig 3 Triangle — mana = auge — leye reye indeye — 3 bewusste',20,H-20);
+ requestAnimationFrame(draw);
+}
+draw();
+</script></body></html>
